@@ -20,9 +20,7 @@ class Client(object):
         topic_name = topic_name or self.default_topic_name
         req = pslite_pb2.PublishRequest(
                 topic_name = topic_name,
-                content = pslite_pb2.PublishRequest_ContentBytes(
-                    content_bytes = data
-                )
+                content_bytes = data
               )
         return self.pslite_svc_stub.Publish(req)
 
