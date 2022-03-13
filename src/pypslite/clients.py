@@ -2,10 +2,10 @@ import grpc
 from pypslite import pslite_pb2, pslite_pb2_grpc
 
 class Client(object):
-    def __init__(self, endpoint, default_topic_name="testtopic"):
+    def __init__(self, endpoint="localhost:10111", default_topic_name="testtopic"):
         self.endpoint = endpoint
         self.default_topic_name = default_topic_name
-        self.channel = grpc.insecure_channel(self.service_host)
+        self.channel = grpc.insecure_channel(self.endpoint)
         self.pslite_svc_stub = pslite_pb2_grpc.PSLiteServiceStub(self.channel)
 
     def ensure_topic(self, topic_name, folder):
