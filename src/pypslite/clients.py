@@ -1,5 +1,6 @@
 import grpc
 from pypslite import pslite_pb2, pslite_pb2_grpc
+import os
 
 class Client(object):
     def __init__(self, endpoint="localhost:10111", default_topic_name="testtopic"):
