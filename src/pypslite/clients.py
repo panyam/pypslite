@@ -10,9 +10,10 @@ class Client(object):
         self.pslite_svc_stub = pslite_pb2_grpc.PSLiteServiceStub(self.channel)
 
     def ensure_topic(self, topic_name, folder):
-        req = pslite_pb2.OpenTopicRequest(name = topic_name,
+        req = pslite_pb2.OpenTopicRequest(topic = pslite_pb2.Topic(
+                name = topic_name,
                 records_path = os.path.join(folder, "RECORDS"),
-                index_path = os.path.join(folder, "INDEX"))
+                index_path = os.path.join(folder, "INDEX")))
         return self.pslite_svc_stub.OpenTopic(req)
 
     def pub(self, data, topic_name=None):
