@@ -17,6 +17,8 @@ class Client(object):
         return self.pslite_svc_stub.OpenTopic(req)
 
     def pub(self, data, topic_name=None):
+        if type(data) is str:
+            data = bytes(data, "utf-8")
         topic_name = topic_name or self.default_topic_name
         req = pslite_pb2.PublishRequest(
                 topic_name = topic_name,
